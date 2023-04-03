@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('role')->default(\App\Models\User::ROLES['LIBRARIAN']);
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name')->unique();
+            $table->string('author');
+            $table->bigInteger('ISBN')->unique();
+            $table->integer('genre');
+            $table->string('publishing_house');
+            $table->date('publication_date');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('books');
     }
 };
