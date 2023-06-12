@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('composer update') {
+            steps {
+                sh "composer update";
+            }
+        }
         stage('clear caches') {
             steps {
                 sh "docker exec -t test-main-backend-php-fpm bash -c 'php artisan optimize:clear' ";
