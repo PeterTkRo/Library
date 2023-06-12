@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clear caches') {
+            steps {
+                sh "docker exec -it test-main-backend-php-fpm bash -c 'php artisan optimize:clear' ";
+            }
+        }
+        stage('test') {
+            success {
+                sh "docker exec -it test-main-backend-php-fpm bash -c 'php artisan test' ";
+            }
+        }
+    }
+}
