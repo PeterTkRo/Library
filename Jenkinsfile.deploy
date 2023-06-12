@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage('test') {
-            success {
+            steps {
                 sh "docker exec -it test-main-backend-php-fpm bash -c 'php artisan test' ";
             }
         }
