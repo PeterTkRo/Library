@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('clear caches') {
             steps {
-                sh "docker exec -it test-main-backend-php-fpm bash -c 'php artisan optimize:clear' ";
+                sh "docker exec -t test-main-backend-php-fpm bash -c 'php artisan optimize:clear' ";
             }
         }
         stage('test') {
             steps {
-                sh "docker exec -it test-main-backend-php-fpm bash -c 'php artisan test' ";
+                sh "docker exec -t test-main-backend-php-fpm bash -c 'php artisan test' ";
             }
         }
     }
